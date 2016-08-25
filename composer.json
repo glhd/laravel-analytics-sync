@@ -1,0 +1,28 @@
+{
+  "name": "galahad/laravel-analytics-sync",
+  "description": "Laravel package that integrates with Google Analytics",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chris Morrell"
+    },
+    {
+      "name": "Junior Grossi",
+      "email": "juniorgro@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/support": "~5.2",
+    "illuminate/http": "^5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.5",
+    "orchestra/testbench": "^3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Galahad\\LaravelAnalyticsSync\\": "src/"
+    }
+  }
+}

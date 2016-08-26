@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Galahad\LaravelAnalyticsSync;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 /**
  * Class GoogleAnalyticsMiddleware
  *
- * @package App\Http\Middleware
+ * @package Galahad\LaravelAnalyticsSync
  * @author Chris Morrell
  * @author Junior Grossi <juniorgro@gmail.com>
  */

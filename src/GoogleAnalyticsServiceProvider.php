@@ -4,6 +4,12 @@ namespace Galahad\LaravelAnalyticsSync;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class GoogleAnalyticsServiceProvider
+ *
+ * @package Galahad\LaravelAnalyticsSync
+ * @author Junior Grossi <juniorgro@gmail.com>
+ */
 class GoogleAnalyticsServiceProvider extends ServiceProvider
 {
     /**
@@ -28,7 +34,6 @@ class GoogleAnalyticsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/analytics.php' => config_path('analytics.php'),
         ]);
-
         $this->commands(MigrationCommand::class);
     }
 }

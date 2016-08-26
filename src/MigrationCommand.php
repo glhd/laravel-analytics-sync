@@ -25,7 +25,7 @@ class MigrationCommand extends Command
     protected $description = 'Add a column to store the Google Analytics Client ID';
 
     /**
-     *
+     * Create the migration file
      */
     public function handle()
     {
@@ -38,6 +38,9 @@ class MigrationCommand extends Command
         file_put_contents($migrationFile, $migrationContent);
     }
 
+    /**
+     * @return array
+     */
     public function getDataFromConfig()
     {
         return [

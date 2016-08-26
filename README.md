@@ -35,16 +35,6 @@ This will save a `analytics.php` file under `/config`, with the following conten
 return [
     /*
     |--------------------------------------------------------------------------
-    | User Model
-    |--------------------------------------------------------------------------
-    |
-    | This is the model that should be used as User, where the column to store
-    | the Google Analytics Client ID should be stored.
-    |
-    */
-    'model' => 'App\User',
-    /*
-    |--------------------------------------------------------------------------
     | User table
     |--------------------------------------------------------------------------
     |

@@ -19,6 +19,16 @@ class GoogleAnalyticsMiddleware
     const COOKIE_KEY = '_ga';
 
     /**
+     * @var string
+     */
+    protected $columnName;
+
+    public function __construct()
+    {
+        $this->columnName = $this->getColumnNameFromConfig();
+    }
+
+    /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -46,11 +56,20 @@ class GoogleAnalyticsMiddleware
         return $response;
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
     protected function loadClientIdFromRequest(Request $request)
     {
         return $request->cookie(self::COOKIE_KEY);
     }
 
+    /**
+     * @param string $clientId
+     * @param Model|null $user
+     * @return void
+     */
     protected function syncClientIdWithUser($clientId, Model $user = null)
     {
         // Skip if we don't have a user
@@ -59,21 +78,35 @@ class GoogleAnalyticsMiddleware
         }
 
         // No need to proceed if we already have the client ID
-        if ($user->analytics_client_id === $clientId) {
+        if ($user->{$this->columnName} === $clientId) {
             return;
         }
 
         // Save
-        $user->analytics_client_id = $clientId;
+        $user->{$this->columnName} = $clientId;
         $user->save();
     }
 
-    protected function attachCookieToResponse(Response $response, User $user)
+    /**
+     * @param Response $response
+     * @param Model $user
+     * @return Response
+     */
+    protected function attachCookieToResponse(Response $response, Model $user)
     {
-        if (!empty($user->analytics_client_id)) {
-            $response = $response->cookie(self::COOKIE_KEY, $user->analytics_client_id);
+        if (!empty($user->{$this->columnName})) {
+            $response = $response->cookie(self::COOKIE_KEY, $user->{$this->columnName});
         }
 
         return $response;
     }
+
+    /**
+     * @return string
+     */
+    protected function getColumnNameFromConfig()
+    {
+        return \Config::get('analytics.column');
+    }
 }
+

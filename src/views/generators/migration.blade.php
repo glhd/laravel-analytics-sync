@@ -12,7 +12,7 @@ class GoogleAnalyticsAddClientId extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('{{ $table }}', function(Blueprint $table) {
             $table->string('{{ $column }}')->nullable();
         });
     }

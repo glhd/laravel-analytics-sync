@@ -16,7 +16,7 @@ class MigrationCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'analytics:migrate';
+    protected $signature = 'analytics:migration';
 
 
     /**
@@ -35,6 +35,7 @@ class MigrationCommand extends Command
         $data = $this->getDataFromConfig();
         $migrationFile = database_path('migrations').'/'.date('Y_m_d_His').'_google_analytics_add_client_id.php';
         $migrationContent = $view->make('analytics::generators.migration')->with($data)->render();
+        file_put_contents($migrationFile, $migrationContent);
     }
 
     public function getDataFromConfig()
